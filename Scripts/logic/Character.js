@@ -1,6 +1,9 @@
-class Character{
+export class Character{
+
+    #id;
+
     constructor(id, name, statArray, skillArray, taskArray){
-        this.id = id;
+        this.#id = id;
         this.name = name;
         this.statArray = statArray;
         this.skillArray = skillArray;
@@ -9,10 +12,12 @@ class Character{
 
     completeTask(task){
         const taskIndex = this.taskArray.findIndex((e) => e === task)
-        const objTask = this.taskArray[index].completed();
+        const objTask = this.taskArray[taskIndex].completed();
         
         const statIndex = this.statArray.findIndex((e) => e.name === objTask.target)
         this.statArray[statIndex].amount += objTask.amount;
+
+        this.taskArray.splice(taskIndex, 1);
     }
 
     addTask(task){

@@ -1,4 +1,4 @@
-class Stat{
+export class Stat{
     constructor(name, amount){
         this.name = name;
         this.amount = amount 
