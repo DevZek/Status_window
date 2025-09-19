@@ -1,3 +1,5 @@
+import { Task } from "./Task.js";
+
 export class Character{
 
     #id;
@@ -11,26 +13,86 @@ export class Character{
     }
 
     completeTask(task){
+        if(!task || !(task instanceof Task)){
+            throw new Error("Task can not be null, undefined or a different instance")
+        }
+
         const taskIndex = this.taskArray.findIndex((e) => e === task)
         const objTask = this.taskArray[taskIndex].completed();
         
         const statIndex = this.statArray.findIndex((e) => e.name === objTask.target)
-        this.statArray[statIndex].amount += objTask.amount;
+        if (statIndex !== -1) {
+            this.statArray[statIndex].amount += objTask.amount;
+            this.taskArray.splice(taskIndex, 1);
+            return; 
+        }
 
-        this.taskArray.splice(taskIndex, 1);
+        const skillIndex = this.skillArray.findIndex((e) => e.name === objTask.target)
+         if (skillIndex !== -1) {
+            this.skillArray[skillIndex].amount += objTask.amount;
+            this.taskArray.splice(taskIndex, 1);
+            return; 
+        }
+        console.error("You dont have this skill or stat to up")
     }
 
     addTask(task){
+        if(!task || !(task instanceof Task)){
+            throw new Error("Task can not be null, undefined or a different instance")
+        }
         this.taskArray.push(task);
     }
 
     addStat(stat){
+        if(!stat || !(stat instanceof Task)){
+            throw new Error("Stat can not be null, undefined or a different instance")
+        }
         this.statArray.push(stat);
     }
 
     addSkill(skill){
+        if(!skill || !(skill instanceof Task)){
+            throw new Error("Skill can not be null, undefined or a different instance")
+        }
         this.skillArray.push(skill);  
     }
 
     toJSON(){}
+
+    set name(value){
+        if(typeof value !== "string" || !value.trim()){
+            throw new error("Name has to be a string value")
+        }
+        this._name = value;
+    }
+    set statArray (arrayValue){
+       if (!Array.isArray(arrayValue)) {
+            throw new Error("Stats must be an array.");
+        }
+        this._statArray = arrayValue;
+    }
+    set skillArray (arrayValue){
+        if (!Array.isArray(arrayValue)) {
+            throw new Error("Stats must be an array.");
+        }
+        this._skillArray = arrayValue;
+    }
+    set taskArray (arrayValue){
+       if (!Array.isArray(arrayValue)) {
+            throw new Error("Stats must be an array.");
+        }
+        this._taskArray = arrayValue;
+    }
+    get name(){
+        return this._name;
+    }
+    get statArray(){
+        return this._statArray
+    }
+    get skillArray(){
+        return this._skillArray
+    }
+    get taskArray(){
+        return this._taskArray
+    }
 }

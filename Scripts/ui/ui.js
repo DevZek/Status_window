@@ -5,7 +5,7 @@ import { Character } from "../logic/Character.js";
 
 const task1 = new Task("test1", 1, "stamina", "")
 const task2 = new Task("test2", 1, "strength", "")
-const task3 = new Task ("lezen", 1 , "intellegience", "")
+const task3 = new Task ("lezen", 1 , "coding", "")
 const stat1 = new Stat("stamina", 5);
 const stat2 = new Stat("strength", 8)
 const stat3 = new Stat("intellegience", 0)
@@ -22,26 +22,32 @@ const skillDisplay = document.getElementById("skillList")
 const statDisplay = document.getElementById("statList")
 const taskDisplay = document.getElementById("taskList")
 
-function displayData(){
-
-    const skills = Ezekiel.skillArray
+function renderStats(){
     const stats = Ezekiel.statArray
-    const tasks = Ezekiel.taskArray
-
     statDisplay.innerHTML = ""
-    skillDisplay.innerHTML = ""
-    taskDisplay.innerHTML = ""
 
-    for (let index = 0; index < stats.length; index++) {
+     for (let index = 0; index < stats.length; index++) {
         const li = document.createElement("li");
         li.append(stats[index].name + " " + stats[index].amount)
         statDisplay.appendChild(li)
     }
+}
+
+function renderSkills(){
+    const skills = Ezekiel.skillArray
+    skillDisplay.innerHTML = ""
+
     for (let index = 0; index < skills.length; index++) {
        const li = document.createElement("li");
         li.append(skills[index].name + " " + skills[index].amount)
         skillDisplay.appendChild(li)
     }
+}
+
+function renderTasks(){
+    const tasks = Ezekiel.taskArray
+    taskDisplay.innerHTML = ""
+    
     for (let index = 0; index < tasks.length; index++) {
         const li = document.createElement("li");
         const button = document.createElement("button")
@@ -55,7 +61,12 @@ function displayData(){
 
         taskDisplay.appendChild(li)
     }
+}
 
+function displayData(){
+    renderStats()
+    renderSkills()
+    renderTasks()
 }
 
 displayData()
