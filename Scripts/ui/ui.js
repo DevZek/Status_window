@@ -16,14 +16,54 @@ const taskArray = [task1, task2, task3]
 const statArray = [stat1, stat2, stat3]
 const skillArray = [skill1, skill2]
 
-const Ezekiel = new Character(1, "Ezekiel", statArray, skillArray, taskArray)
+const button = document.getElementById("charButton")
+
+button.addEventListener("click", function(e){
+    
+    const task4 = new Task("fdqsfdqf", 1, "stamina", "")
+    const task5 = new Task("ggrrr", 1, "strength", "")
+    const task6 = new Task ("miauw", 1 , "libido", "")
+    const stat4 = new Stat("libido", 5);
+    const stat5 = new Stat("thrust power", 8)
+    const stat6 = new Stat("intellegience", 0)
+    const skill3 = new Skill("backflip", 2)
+    const skill4 = new Skill("crying", 4)
+
+    const taskArray1 = [task4, task5, task6]
+    const statArray1 = [stat4, stat5, stat6]
+    const skillArray1 = [skill3, skill4]
+
+    const Char1 = new Character(1, "John", statArray1, skillArray1, taskArray1)
+
+    localStorage.setItem("char1", JSON.stringify(Char1))
+
+    console.log("succes")
+    testing()
+})
+
+
+function testing(){
+    const saved = localStorage.getItem("char1")
+    if(saved){
+        const char1test = JSON.parse(saved)
+        console.log("retrieve succes")
+        console.log(char1test)
+        return char1test;
+    }else{
+        console.log("not succes")
+    }
+}
+
+const Ezekiel = Character.fromJSON(testing())
+console.log(Ezekiel)
+
 
 const skillDisplay = document.getElementById("skillList")
 const statDisplay = document.getElementById("statList")
 const taskDisplay = document.getElementById("taskList")
 
 function renderStats(){
-    const stats = Ezekiel.statArray
+    const stats = Ezekiel._statArray
     statDisplay.innerHTML = ""
 
      for (let index = 0; index < stats.length; index++) {
@@ -34,7 +74,7 @@ function renderStats(){
 }
 
 function renderSkills(){
-    const skills = Ezekiel.skillArray
+    const skills = Ezekiel._skillArray
     skillDisplay.innerHTML = ""
 
     for (let index = 0; index < skills.length; index++) {
@@ -45,7 +85,7 @@ function renderSkills(){
 }
 
 function renderTasks(){
-    const tasks = Ezekiel.taskArray
+    const tasks = Ezekiel._taskArray
     taskDisplay.innerHTML = ""
     
     for (let index = 0; index < tasks.length; index++) {
@@ -57,7 +97,7 @@ function renderTasks(){
             displayData()
         })
 
-        li.append(tasks[index].name + " " + tasks[index].target, button)
+        li.append(tasks[index]._name + " " + tasks[index]._target, button)
 
         taskDisplay.appendChild(li)
     }
@@ -70,3 +110,9 @@ function displayData(){
 }
 
 displayData()
+
+
+
+
+
+

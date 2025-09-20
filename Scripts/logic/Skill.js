@@ -9,9 +9,7 @@ export class Skill{
     decrease(amount){
         this.amount = Math.max(0, this.amount - amount)
     }
-    toJSON(){
-        return {"name":this.name, "amount":this.amount, "type":this.type}
-    }
+    
     set name(value){
         if(typeof value !== "string" || !value.trim()){
             throw new Error("Skill name has to be a string value")
@@ -29,5 +27,11 @@ export class Skill{
     }
     get amount(){
         return this._amount
+    }
+    toJSON(){
+        return{
+            _name: this._name,
+            _amount: this._amount
+        }
     }
 }

@@ -38,4 +38,12 @@ export class Task{
     get target(){
         return this._target
     }
+
+    toJSON(){
+        return{
+            _name: this._name,
+            _difficulty: this._difficulty,
+            _target: this._target
+        }
+    }
 }

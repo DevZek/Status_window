@@ -1,4 +1,6 @@
 import { Task } from "./Task.js";
+import { Stat } from "./Stat.js";
+import { Skill } from "./Skill.js";
 
 export class Character{
 
@@ -57,7 +59,17 @@ export class Character{
         this.skillArray.push(skill);  
     }
 
-    toJSON(){}
+    // toJSON(){}
+
+    static fromJSON(data){
+        return new Character(
+            data.id,
+            data._name,
+            data._statArray.map(s => new Stat(s._name, s._amount)),
+            data._skillArray.map(sk => new Skill(sk._name, sk._amount)),
+            data._taskArray.map(t => new Task(t._name, t._difficulty, t._target))
+        )
+    }
 
     set name(value){
         if(typeof value !== "string" || !value.trim()){

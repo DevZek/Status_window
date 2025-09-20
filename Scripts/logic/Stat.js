@@ -9,13 +9,16 @@ export class Stat{
     decrease(amount){
         this.amount = Math.max(0, this.amount - amount)
     }
-    toJSON(){
-        return {"name":this.name, "amount":this.amount, "type":this.type}
+   toJSON(){
+        return{
+            _name: this._name,
+            _amount: this._amount
+        }
     }
 
     set name(value){
         if(typeof value !== "string" || !value.trim()){
-            throw new Error("Stat name has to be a string value")
+            throw new Error("Stat Name has to be a string value")
         }
         this._name = value
     }
