@@ -21,9 +21,9 @@ const button = document.getElementById("charButton")
 button.addEventListener("click", function(e){
     
     const task4 = new Task("fdqsfdqf", 1, "stamina", "")
-    const task5 = new Task("ggrrr", 1, "strength", "")
+    const task5 = new Task("drinking water", 1, "crying", "")
     const task6 = new Task ("miauw", 1 , "libido", "")
-    const stat4 = new Stat("libido", 5);
+    const stat4 = new Stat("libido", 50);
     const stat5 = new Stat("thrust power", 8)
     const stat6 = new Stat("intellegience", 0)
     const skill3 = new Skill("backflip", 2)

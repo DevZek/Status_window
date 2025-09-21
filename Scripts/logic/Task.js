@@ -7,7 +7,7 @@ export class Task{
     }
 
     completed(){
-        return {"target": this.target, "amount": 2}
+        return {"target": this.target}
     }
 
     set name(value){

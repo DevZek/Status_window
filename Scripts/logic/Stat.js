@@ -1,20 +1,20 @@
 export class Stat{
+
+    #BASEGAIN = 0.1
+    #SCALEFACTOR = 35
+
+
     constructor(name, amount){
         this.name = name;
         this.amount = amount 
     }
-    increase(amount){
-        this.amount += amount;
+    increase(){
+        this.amount += Number.parseFloat((this.#BASEGAIN / (1 + this.amount / this.#SCALEFACTOR)).toFixed(4))
     }
     decrease(amount){
         this.amount = Math.max(0, this.amount - amount)
     }
-   toJSON(){
-        return{
-            _name: this._name,
-            _amount: this._amount
-        }
-    }
+   
 
     set name(value){
         if(typeof value !== "string" || !value.trim()){
@@ -33,5 +33,11 @@ export class Stat{
     }
     get amount(){
         return this._amount
+    }
+    toJSON(){
+        return{
+            _name: this._name,
+            _amount: this._amount
+        }
     }
 }

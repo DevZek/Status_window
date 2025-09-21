@@ -1,10 +1,14 @@
 export class Skill{
+
+    #BASEGAIN = 0.1
+    #SCALEFACTOR = 35
+
     constructor(name, amount){
         this.name = name;
         this.amount = amount 
     }
-    increase(amount){
-        this.amount += amount;
+    increase(){
+        this.amount +=  Number.parseFloat((this.#BASEGAIN / (1 + this.amount / this.#SCALEFACTOR)).toFixed(4))
     }
     decrease(amount){
         this.amount = Math.max(0, this.amount - amount)

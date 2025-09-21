@@ -24,14 +24,14 @@ export class Character{
         
         const statIndex = this.statArray.findIndex((e) => e.name === objTask.target)
         if (statIndex !== -1) {
-            this.statArray[statIndex].amount += objTask.amount;
+            this.statArray[statIndex].increase();
             this.taskArray.splice(taskIndex, 1);
             return; 
         }
 
         const skillIndex = this.skillArray.findIndex((e) => e.name === objTask.target)
          if (skillIndex !== -1) {
-            this.skillArray[skillIndex].amount += objTask.amount;
+            this.skillArray[skillIndex].increase();
             this.taskArray.splice(taskIndex, 1);
             return; 
         }
