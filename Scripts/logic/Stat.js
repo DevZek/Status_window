@@ -8,8 +8,8 @@ export class Stat{
         this.name = name;
         this.amount = amount 
     }
-    increase(){
-        this.amount += Number.parseFloat((this.#BASEGAIN / (1 + this.amount / this.#SCALEFACTOR)).toFixed(4))
+    increase(diffMultiplier){
+        this.amount += Number.parseFloat(diffMultiplier*((this.#BASEGAIN / (1 + this.amount / this.#SCALEFACTOR))).toFixed(4))
     }
     decrease(amount){
         this.amount = Math.max(0, this.amount - amount)

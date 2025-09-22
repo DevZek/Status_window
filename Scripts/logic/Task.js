@@ -7,7 +7,8 @@ export class Task{
     }
 
     completed(){
-        return {"target": this.target}
+        const difficultyMultiplier = 1 + (this._difficulty - 2) * 0.1
+        return {"target": this._target, "difficulty": difficultyMultiplier}
     }
 
     set name(value){
@@ -17,8 +18,8 @@ export class Task{
         this._name = value
     }
     set difficulty(value){
-        if (typeof value !== "number") {
-            throw new Error("Task difficulty has te be a number value")
+        if (typeof value !== "number" || value > 5 || value <= 0) {
+            throw new Error("Task difficulty has te be a number value and between 1 and 5")
         }
         this._difficulty = value
     }
