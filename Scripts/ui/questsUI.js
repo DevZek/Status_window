@@ -42,4 +42,46 @@ function questDisplay(){
     }
 }
 
+const questForm = document.getElementById("questForm")
+const createButton = document.getElementById("createQ")
+const closeButton = document.getElementById("closeModal")
+const modal = document.getElementById("questModal")
+
+createButton.addEventListener("click", (e)=>{
+    modal.style.display = "flex"
+})
+
+closeButton.addEventListener("click", (e)=>{
+    modal.style.display = "none"
+})
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }})
+
+questForm.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(questForm)
+    const questName = formData.get("questName")
+    const questTarget = formData.get("questTarget")
+    const questDifficulty = parseInt(formData.get("questDifficulty"))
+
+    console.log(questName + "  " + questTarget + "  " + questDifficulty)
+
+    createQuest(questName, questTarget, questDifficulty);
+
+
+})
+
+
+function createQuest(name, target, difficulty){
+
+    const newTask = new Task(name,difficulty,target, 0)
+    charDaniel.addTask(newTask);
+    console.log("Succelfully added quest")
+    questDisplay()
+}
+
 questDisplay()

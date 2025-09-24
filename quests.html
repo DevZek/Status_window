@@ -15,6 +15,29 @@
 
                 </ul>
             </div>
+            <button id="createQ">Create quest</button>
+            <!-- Modal -->
+             <div id="questModal" class="modal">
+                <div class="modal-content">
+                    <span id="closeModal">&times;</span>
+                    <h2>Create New Quest</h2>
+                    <form action="" id="questForm">
+                        <label for="questName">Quest Name</label>
+                        <input type="text" name="questName" id="questName" required>
+                        <label for="questTarget" >Target Stat/Skill</label>
+                        <input type="text" name="questTarget" id="questTarget" required>
+                        <label for="questDifficulty">Difficulty</label>
+                        <select name="questDifficulty" id="difficultyChoice">
+                            <option value="1">1 - Easy</option>
+                            <option value="2">2 - Normal</option>
+                            <option value="3">3 - Hard</option>
+                            <option value="4">4 - Expert</option>
+                            <option value="5">5 - Extreme</option>
+                        </select>
+                        <input type="submit" value="Create">
+                    </form>
+                </div>
+             </div>
         </section>
     </main>
     <script type="module" src="Scripts/ui/questsUI.js"></script>
